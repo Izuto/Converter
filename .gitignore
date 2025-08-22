@@ -1,12 +1,17 @@
 # Angular specific
 /dist/
-# Ignore Node modules and build output
-node_modules/
-dist/
+/out-tsc/
+/tmp/
+/coverage/
+/e2e/test-output/
+/.angular/
+.angular/
+server/
 
-# Keep package-lock.json tracked for deterministic installs
-# package-lock.json
-yarn.lock
+# Node modules and dependency files
+/node_modules/
+/package-lock.json
+/yarn.lock
 
 # Environment files
 .env
