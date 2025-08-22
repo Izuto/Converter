@@ -1,0 +1,129 @@
+/* Minimal styles for converter app */
+html,body { height:100%; margin:0; font-family: Arial, sans-serif }
+/* Theme styles inspired by screenshot */
+:root{
+	--brand:#07124b;
+	--accent:#0d6efd;
+}
+/* PrimeNG theme, core and icons */
+@import "primeng/resources/themes/saga-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f4f6fb; min-height: 100vh; padding-top: 70px }
+
+/* topbar / language selector */
+.topbar { position: fixed; top:0; left:0; right:0; height:70px; background: white; border-bottom:1px solid #eee; z-index:1000; display:flex; align-items:center }
+.topbar-inner { display:flex; justify-content:space-between; align-items:center; width:100%; max-width:1100px; margin:0 auto; padding:0 1rem }
+.topbar .brand { font-weight:700; color:var(--brand); font-size:1.15rem }
+.lang-select select { padding:0.4rem 0.6rem; border-radius:6px; border:1px solid #ddd; background:#fff }
+.visually-hidden { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
+
+/* Ad slots layout */
+.app-shell { display: flex; gap: 1rem; align-items: flex-start; }
+.ad { width: 160px; flex: 0 0 160px; position: sticky; top: 80px; height: calc(100vh - 100px); display:flex; align-items:center; justify-content:center }
+.ad-left { margin-left: 8px }
+.ad-right { margin-right: 8px }
+.app-main { flex: 1 1 auto; min-width: 0 }
+
+/* Hide ads on small screens */
+@media (max-width: 992px) {
+	.ad { display: none }
+	.app-shell { padding: 0 0.5rem }
+}
+
+.ad-placeholder { width: 140px; height: 580px; border: 2px dashed rgba(0,0,0,0.12); background: linear-gradient(180deg,#fff,#f7f7f7); display:flex; align-items:center; justify-content:center; text-align:center; color:#666; font-size:14px }
+
+/* center content horizontally but keep vertical flow stable to avoid re-centering when heights change */
+.container { max-width: 900px; margin: 1.5rem auto 3rem }
+.app-hero { background: linear-gradient(180deg,var(--brand),#0b2a6b); color: white }
+.app-hero .display-4 { font-weight:700; color: white; }
+/* hero styling to match screenshot */
+.app-hero .container { padding-top: 2rem; padding-bottom: 1rem; }
+.card { border-radius: 8px }
+/* ensure row gutters give comfortable space and columns remain side-by-side */
+.row.gx-4 { gap: 1.5rem }
+
+.swap-btn { border-radius: 50%; width:56px; height:56px; display:inline-flex; align-items:center; justify-content:center; font-size:1.1rem }
+.input-group-text { min-width:56px; font-weight:600 }
+.form-text { color: rgba(0,0,0,0.6) }
+
+/* big input like the screenshot */
+.big-input { font-size: 3.2rem; padding: 1rem 1rem; height: auto; background:#f0f0f0; border:none; border-bottom:2px solid var(--brand) }
+
+.result-box { background:#f0f0f0; padding:1.25rem; min-height:110px; border-bottom:2px solid var(--brand) }
+.result-label { font-size:1rem; color: #333 }
+.result-value { font-size:2.25rem; color: var(--brand); font-weight:600 }
+.placeholder-text { font-size:2.25rem; color: #bdbdbd }
+
+/* make primary buttons larger and more touch-friendly */
+.btn-primary { padding: 0.75rem 1rem; font-size: 1.05rem; border-radius: 10px }
+.btn { min-height:48px }
+
+.btn-calc { width: 64px; height: 64px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; font-size:1.25rem }
+.btn-calc .btn-arrow { font-weight:700; }
+
+/* enlarge PrimeIcons inside the circular calculate button by 50% */
+.btn-calc i.pi { font-size: 1.875rem; line-height: 1; }
+
+/* controls row layout */
+.controls-row { display: flex; gap: 1rem; align-items: center }
+.controls-row .min-w-0 { min-width: 0 }
+.controls-row .form-select { min-width: 160px }
+
+/* make PrimeNG dropdowns in the controls row fill their container columns */
+.controls-row { display:flex; gap:1rem; align-items:center }
+.controls-row .min-w-0 { flex: 1 1 0; min-width: 0 }
+.controls-row .p-dropdown {
+	width: 100% !important;
+	max-width: none !important;
+	display: block;
+}
+.controls-row .p-dropdown .p-dropdown-label,
+.controls-row .p-dropdown input.p-dropdown-label {
+	width: 100% !important;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@media (max-width: 576px) {
+	.controls-row { gap: 0.5rem }
+	.controls-row .form-select { min-width: 120px }
+	.controls-row ::ng-deep .p-dropdown { width: 100% !important }
+	.btn-calc { width: 52px; height: 52px }
+}
+
+/* convert button: reserve space for spinner and position spinner absolutely to avoid layout shift */
+.btn-primary.w-100 { position: relative; padding-left: 2.5rem }
+.btn-primary.w-100 .spinner-border { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); }
+
+/* center the card vertically with responsive spacing */
+.card-body { padding: 1.5rem }
+
+@media (max-width: 768px) {
+	.app-hero { text-align: center }
+	.swap-btn { width:44px; height:44px }
+	.input-group-text { min-width:44px }
+}
+
+@media (min-width: 992px) {
+	.big-input { font-size: 3.2rem }
+}
+
+/* reserve space for conversion result so page doesn't jump when result appears */
+.result-area { min-height: 110px }
+
+/* p-inputNumber raw input styling when using inputStyleClass="big-input" */
+.p-inputnumber input.big-input {
+	font-size: 3.2rem ;
+	padding: 1rem 1rem ;
+	background: #f0f0f0 ;
+	border: none ;
+	border-bottom: 2px solid var(--brand) ;
+	color: var(--brand) ;
+	font-weight: 700 ;
+	line-height: 1 ;
+	width: 100% ;
+}
+
+
