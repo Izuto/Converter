@@ -34,7 +34,8 @@ export class I18nService {
       swap: 'Swap currencies'
       ,
       currencies: {
-        EUR: 'Euro', USD: 'US Dollar', GBP: 'British Pound', JPY: 'Japanese Yen', CHF: 'Swiss Franc', AUD: 'Australian Dollar', CAD: 'Canadian Dollar', CNY: 'Chinese Yuan', SEK: 'Swedish Krona', NOK: 'Norwegian Krone', DKK: 'Danish Krone', INR: 'Indian Rupee', BRL: 'Brazilian Real', ZAR: 'South African Rand', NZD: 'New Zealand Dollar', SGD: 'Singapore Dollar', HKD: 'Hong Kong Dollar', MXN: 'Mexican Peso', RUB: 'Russian Ruble', TRY: 'Turkish Lira'
+        EUR: 'Euro', USD: 'US Dollar', GBP: 'British Pound', JPY: 'Japanese Yen', CHF: 'Swiss Franc', AUD: 'Australian Dollar', CAD: 'Canadian Dollar', CNY: 'Chinese Yuan', SEK: 'Swedish Krona', NOK: 'Norwegian Krone', DKK: 'Danish Krone', INR: 'Indian Rupee', BRL: 'Brazilian Real', ZAR: 'South African Rand', NZD: 'New Zealand Dollar', SGD: 'Singapore Dollar', HKD: 'Hong Kong Dollar', MXN: 'Mexican Peso', RUB: 'Russian Ruble', TRY: 'Turkish Lira',
+        ARS: 'Argentine Peso', BGN: 'Bulgarian Lev', CLP: 'Chilean Peso', COP: 'Colombian Peso', EGP: 'Egyptian Pound', ISK: 'Icelandic Krona', KES: 'Kenyan Shilling', KZT: 'Kazakhstani Tenge', NGN: 'Nigerian Naira', PHP: 'Philippine Peso', RON: 'Romanian Leu', UAH: 'Ukrainian Hryvnia', VND: 'Vietnamese Dong', TWD: 'New Taiwan Dollar', PKR: 'Pakistani Rupee', LKR: 'Sri Lankan Rupee', BDT: 'Bangladeshi Taka', GEL: 'Georgian Lari', HRK: 'Croatian Kuna', MAD: 'Moroccan Dirham', PAB: 'Panamanian Balboa', BHD: 'Bahraini Dinar', KGS: 'Kyrgyzstani Som', KWD: 'Kuwaiti Dinar', OMR: 'Omani Rial', QAR: 'Qatari Riyal'
       }
   ,
   rateSource: { live: 'Live', fallback: 'Fallback', cached: 'Cached', local: 'Local' }
@@ -52,7 +53,7 @@ export class I18nService {
       convert: 'Umrechnen',
       result: 'Ergebnis',
       swap: 'Währungen tauschen',
-  currencies: { EUR: 'Euro', USD: 'US-Dollar', GBP: 'Britisches Pfund', JPY: 'Japanischer Yen', CHF: 'Schweizer Franken', AUD: 'Australischer Dollar', CAD: 'Kanadischer Dollar', CNY: 'Chinesischer Yuan', SEK: 'Schwedische Krone', NOK: 'Norwegische Krone', DKK: 'Dänische Krone', INR: 'Indische Rupie', BRL: 'Brasilianischer Real', ZAR: 'Südafrikanischer Rand', NZD: 'Neuseeländischer Dollar', SGD: 'Singapur-Dollar', HKD: 'Hongkong-Dollar', MXN: 'Mexikanischer Peso', RUB: 'Russischer Rubel', TRY: 'Türkische Lira' },
+  currencies: { EUR: 'Euro', USD: 'US-Dollar', GBP: 'Britisches Pfund', JPY: 'Japanischer Yen', CHF: 'Schweizer Franken', AUD: 'Australischer Dollar', CAD: 'Kanadischer Dollar', CNY: 'Chinesischer Yuan', SEK: 'Schwedische Krone', NOK: 'Norwegische Krone', DKK: 'Dänische Krone', INR: 'Indische Rupie', BRL: 'Brasilianischer Real', ZAR: 'Südafrikanischer Rand', NZD: 'Neuseeländischer Dollar', SGD: 'Singapur-Dollar', HKD: 'Hongkong-Dollar', MXN: 'Mexikanischer Peso', RUB: 'Russischer Rubel', TRY: 'Türkische Lira', ARS: 'Argentinischer Peso', BGN: 'Bulgarischer Lew', CLP: 'Chilenischer Peso', COP: 'Kolumbianischer Peso', EGP: 'Ägyptisches Pfund', ISK: 'Isländische Krone', KES: 'Kenyaische Schilling', KZT: 'Kasachischer Tenge', NGN: 'Nigerianische Naira', PHP: 'Philippinischer Peso', RON: 'Rumänischer Leu', UAH: 'Ukrainische Hrywnja', VND: 'Vietnamesischer Dong', TWD: 'Neuer Taiwan-Dollar', PKR: 'Pakistanische Rupie', LKR: 'Sri-Lanka-Rupie', BDT: 'Bangladeschische Taka', GEL: 'Georgischer Lari', HRK: 'Kroatische Kuna', MAD: 'Marokkanischer Dirham', PAB: 'Panamaischer Balboa', BHD: 'Bahrain-Dinar', KGS: 'Kirgisischer Som', KWD: 'Kuwait-Dinar', OMR: 'Omanischer Rial', QAR: 'Katar-Riyal' },
   rateSource: { live: 'Live', fallback: 'Fallback', cached: 'Zwischengespeichert', local: 'Lokal' }
     },
     fr: {
@@ -68,7 +69,7 @@ export class I18nService {
       convert: 'Convertir',
       result: 'Résultat',
       swap: 'Permuter les monnaies',
-  currencies: { EUR: 'Euro', USD: 'Dollar américain', GBP: 'Livre sterling', JPY: 'Yen japonais', CHF: 'Franc suisse', AUD: 'Dollar australien', CAD: 'Dollar canadien', CNY: 'Yuan chinois', SEK: 'Couronne suédoise', NOK: 'Couronne norvégienne', DKK: 'Couronne danoise', INR: 'Roupie indienne', BRL: 'Real brésilien', ZAR: 'Rand sud-africain', NZD: 'Dollar néo-zélandais', SGD: 'Dollar de Singapour', HKD: 'Dollar de Hong Kong', MXN: 'Peso mexicain', RUB: 'Rouble russe', TRY: 'Livre turque' },
+  currencies: { EUR: 'Euro', USD: 'Dollar américain', GBP: 'Livre sterling', JPY: 'Yen japonais', CHF: 'Franc suisse', AUD: 'Dollar australien', CAD: 'Dollar canadien', CNY: 'Yuan chinois', SEK: 'Couronne suédoise', NOK: 'Couronne norvégienne', DKK: 'Couronne danoise', INR: 'Roupie indienne', BRL: 'Real brésilien', ZAR: 'Rand sud-africain', NZD: 'Dollar néo-zélandais', SGD: 'Dollar de Singapour', HKD: 'Dollar de Hong Kong', MXN: 'Peso mexicain', RUB: 'Rouble russe', TRY: 'Livre turque', ARS: 'Peso argentin', BGN: 'Lev bulgare', CLP: 'Peso chilien', COP: 'Peso colombien', EGP: 'Livre égyptienne', ISK: 'Couronne islandaise', KES: 'Shilling kényan', KZT: 'Tenge kazakh', NGN: 'Naira nigériane', PHP: 'Peso philippin', RON: 'Leu roumain', UAH: 'Hryvnia ukrainienne', VND: 'Dong vietnamien', TWD: 'Nouveau dollar taïwanais', PKR: 'Roupie pakistanaise', LKR: 'Roupie sri-lankaise', BDT: 'Taka bangladais', GEL: 'Lari géorgien', HRK: 'Kuna croate', MAD: 'Dirham marocain', PAB: 'Balboa panaméen', BHD: 'Dinar bahreïni', KGS: 'Som kirghiz', KWD: 'Dinar koweïtien', OMR: 'Rial omanais', QAR: 'Riyal qatari' },
   rateSource: { live: 'En direct', fallback: 'Secours', cached: 'Mise en cache', local: 'Local' }
     },
     es: {
@@ -84,7 +85,7 @@ export class I18nService {
       convert: 'Convertir',
       result: 'Resultado',
       swap: 'Intercambiar monedas',
-  currencies: { EUR: 'Euro', USD: 'Dólar estadounidense', GBP: 'Libra esterlina', JPY: 'Yen japonés', CHF: 'Franco suizo', AUD: 'Dólar australiano', CAD: 'Dólar canadiense', CNY: 'Yuan chino', SEK: 'Corona sueca', NOK: 'Corona noruega', DKK: 'Corona danesa', INR: 'Rupia india', BRL: 'Real brasileño', ZAR: 'Rand sudafricano', NZD: 'Dólar neozelandés', SGD: 'Dólar de Singapur', HKD: 'Dólar de Hong Kong', MXN: 'Peso mexicano', RUB: 'Rublo ruso', TRY: 'Lira turca' },
+  currencies: { EUR: 'Euro', USD: 'Dólar estadounidense', GBP: 'Libra esterlina', JPY: 'Yen japonés', CHF: 'Franco suizo', AUD: 'Dólar australiano', CAD: 'Dólar canadiense', CNY: 'Yuan chino', SEK: 'Corona sueca', NOK: 'Corona noruega', DKK: 'Corona danesa', INR: 'Rupia india', BRL: 'Real brasileño', ZAR: 'Rand sudafricano', NZD: 'Dólar neozelandés', SGD: 'Dólar de Singapur', HKD: 'Dólar de Hong Kong', MXN: 'Peso mexicano', RUB: 'Rublo ruso', TRY: 'Lira turca', ARS: 'Peso argentino', BGN: 'Lev búlgaro', CLP: 'Peso chileno', COP: 'Peso colombiano', EGP: 'Libra egipcia', ISK: 'Corona islandesa', KES: 'Chelín keniano', KZT: 'Tenge kazajo', NGN: 'Naira nigeriana', PHP: 'Peso filipino', RON: 'Leu rumano', UAH: 'Hryvnia ucraniana', VND: 'Dong vietnamita', TWD: 'Nuevo dólar de Taiwán', PKR: 'Rupia pakistaní', LKR: 'Rupia de Sri Lanka', BDT: 'Taka de Bangladés', GEL: 'Lari georgiano', HRK: 'Kuna croata', MAD: 'Dírham marroquí', PAB: 'Balboa panameño', BHD: 'Dinar bahreiní', KGS: 'Som kirguís', KWD: 'Dinar kuwaití', OMR: 'Rial omaní', QAR: 'Riyal qatarí' },
   rateSource: { live: 'En vivo', fallback: 'Reserva', cached: 'En caché', local: 'Local' }
     },
     it: {
@@ -100,7 +101,7 @@ export class I18nService {
       convert: 'Converti',
       result: 'Risultato',
       swap: 'Scambia valute',
-  currencies: { EUR: 'Euro', USD: 'Dollaro USA', GBP: 'Sterlina britannica', JPY: 'Yen giapponese', CHF: 'Franco svizzero', AUD: 'Dollaro australiano', CAD: 'Dollaro canadese', CNY: 'Yuan cinese', SEK: 'Corona svedese', NOK: 'Corona norvegese', DKK: 'Corona danese', INR: 'Rupia indiana', BRL: 'Real brasiliano', ZAR: 'Rand sudafricano', NZD: 'Dollaro della Nuova Zelanda', SGD: 'Dollaro di Singapore', HKD: 'Dollaro di Hong Kong', MXN: 'Peso messicano', RUB: 'Rublo russo', TRY: 'Lira turca' },
+  currencies: { EUR: 'Euro', USD: 'Dollaro USA', GBP: 'Sterlina britannica', JPY: 'Yen giapponese', CHF: 'Franco svizzero', AUD: 'Dollaro australiano', CAD: 'Dollaro canadese', CNY: 'Yuan cinese', SEK: 'Corona svedese', NOK: 'Corona norvegese', DKK: 'Corona danese', INR: 'Rupia indiana', BRL: 'Real brasiliano', ZAR: 'Rand sudafricano', NZD: 'Dollaro della Nuova Zelanda', SGD: 'Dollaro di Singapore', HKD: 'Dollaro di Hong Kong', MXN: 'Peso messicano', RUB: 'Rublo russo', TRY: 'Lira turca', ARS: 'Peso argentino', BGN: 'Lev bulgaro', CLP: 'Peso cileno', COP: 'Peso colombiano', EGP: 'Lira egiziana', ISK: 'Corona islandese', KES: 'Scellino keniota', KZT: 'Tenge kazako', NGN: 'Naira nigeriana', PHP: 'Peso filippino', RON: 'Leu rumeno', UAH: 'Hryvnia ucraina', VND: 'Dong vietnamita', TWD: 'Nuovo dollaro di Taiwan', PKR: 'Rupia pachistana', LKR: 'Rupia dello Sri Lanka', BDT: 'Taka bengalese', GEL: 'Lari georgiano', HRK: 'Kuna croata', MAD: 'Dirham marocchino', PAB: 'Balboa panamense', BHD: 'Dinaro del Bahrein', KGS: 'Som kirghiso', KWD: 'Dinaro kuwaitiano', OMR: 'Rial omanita', QAR: 'Riyal qatari' },
   rateSource: { live: 'Live', fallback: 'Fallback', cached: 'Cached', local: 'Locale' }
     },
     pt: {
@@ -211,7 +212,9 @@ export class I18nService {
   };
 
   constructor() {
-    try { const saved = localStorage.getItem('converter:lang'); if (saved && (this.langs.find(l=>l.code===saved))) { this.current = saved as Lang } } catch {}
+  try { const saved = localStorage.getItem('converter:lang'); if (saved && (this.langs.find(l=>l.code===saved))) { this.current = saved as Lang } } catch {}
+  // populate any missing currency full-names at runtime (non-blocking)
+  void this.loadCurrencyNames();
   }
 
   set(lang: Lang) {
@@ -250,5 +253,34 @@ export class I18nService {
       if (obj !== undefined && obj !== null) return obj;
     } catch {}
     return key;
+  }
+
+  // Load canonical currency full names (English) and fill any missing
+  // names for supported languages at runtime. Uses Umpirsky currency list.
+  private async loadCurrencyNames(): Promise<void> {
+    try {
+      const url = 'https://raw.githubusercontent.com/umpirsky/currency-list/master/data/en/currency.json';
+      const resp = await fetch(url);
+      if (!resp.ok) return;
+      const data: Record<string,string> = await resp.json();
+      // ensure english currencies object exists
+      if (!this.translations.en) this.translations.en = { currencies: {} };
+      if (!this.translations.en.currencies) this.translations.en.currencies = {};
+
+      for (const code of Object.keys(data)) {
+        const canonical = data[code];
+        // set english if missing
+        if (!this.translations.en.currencies[code]) this.translations.en.currencies[code] = canonical;
+        // ensure every configured language has at least this english name
+        for (const l of this.langs) {
+          const lang = l.code as string;
+          try {
+            if (!this.translations[lang]) continue;
+            const cur = this.translations[lang].currencies;
+            if (cur && !cur[code]) cur[code] = canonical;
+          } catch { /* ignore individual language errors */ }
+        }
+      }
+    } catch { /* silent fail - already many hard-coded names present */ }
   }
 }

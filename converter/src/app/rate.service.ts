@@ -3,11 +3,14 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class RateService {
+  // open.er-api.com provides free EUR-base rates without an API key
+  private readonly provider = 'https://open.er-api.com/v6';
+
   constructor(private http: HttpClient) {}
 
-  // fetch latest rates for a base currency from exchangerate.host
   fetchLatest(base: string = 'EUR') {
-    // returns observable
-    return this.http.get<any>(`https://api.exchangerate.host/latest?base=${encodeURIComponent(base)}`);
+    // open.er-api uses path /v6/latest/{base}
+    const url = `${this.provider}/latest/${encodeURIComponent(base)}`;
+    return this.http.get<any>(url);
   }
 }

@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { AppComponent } from './app.component';
 import { ConverterComponent } from './converter.component';
+import { RateService } from './rate.service';
 
 @NgModule({
   declarations: [AppComponent, ConverterComponent],
