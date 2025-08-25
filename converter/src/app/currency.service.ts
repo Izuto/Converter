@@ -13,9 +13,38 @@ export interface CurrencyInfo {
 
 @Injectable({ providedIn: 'root' })
 export class CurrencyService {
-  // No hard-coded numeric rates here – rates are fetched from the API at runtime.
-  // Keep a small, minimal fallback so convert() can operate if no live data is available.
-  private fallbackRates: Rates = { EUR: 1 };
+  // Minimal fallback rates so UI has keys before live data arrives. Values are neutral (1)
+  // and will be replaced by live API rates when available.
+  private fallbackRates: Rates = {
+    EUR: 1,
+    USD: 1,
+    GBP: 1,
+    JPY: 1,
+    CHF: 1,
+    AUD: 1,
+    CAD: 1,
+    CNY: 1,
+    SEK: 1,
+    NOK: 1,
+    DKK: 1,
+    INR: 1,
+    BRL: 1,
+    ZAR: 1,
+    NZD: 1,
+    SGD: 1,
+    HKD: 1,
+    MXN: 1,
+    RUB: 1,
+    TRY: 1,
+    PLN: 1,
+    HUF: 1,
+    CZK: 1,
+    IDR: 1,
+    THB: 1,
+    ILS: 1,
+    AED: 1,
+    SAR: 1
+  };
 
   // current live rates populated from API or cache
   private currentRates: Rates | null = null;
@@ -23,34 +52,34 @@ export class CurrencyService {
 
   // metadata for display
   private meta: { [code: string]: CurrencyInfo } = {
-    EUR: { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺' },
-    USD: { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸' },
-    GBP: { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧' },
-    JPY: { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵' },
-    CHF: { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF', flag: '🇨🇭' },
-    AUD: { code: 'AUD', name: 'Australian Dollar', symbol: 'A$', flag: '🇦🇺' },
-    CAD: { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', flag: '🇨🇦' },
-    CNY: { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳' },
-    SEK: { code: 'SEK', name: 'Swedish Krona', symbol: 'kr', flag: '🇸🇪' },
-    NOK: { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr', flag: '🇳🇴' },
-    DKK: { code: 'DKK', name: 'Danish Krone', symbol: 'kr', flag: '🇩🇰' },
-    INR: { code: 'INR', name: 'Indian Rupee', symbol: '₹', flag: '🇮🇳' },
-    BRL: { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷' },
-    ZAR: { code: 'ZAR', name: 'South African Rand', symbol: 'R', flag: '🇿🇦' },
-    NZD: { code: 'NZD', name: 'New Zealand Dollar', symbol: 'NZ$', flag: '🇳🇿' },
-    SGD: { code: 'SGD', name: 'Singapore Dollar', symbol: 'S$', flag: '🇸🇬' },
-    HKD: { code: 'HKD', name: 'Hong Kong Dollar', symbol: 'HK$', flag: '🇭🇰' },
-    MXN: { code: 'MXN', name: 'Mexican Peso', symbol: '$', flag: '🇲🇽' },
-    RUB: { code: 'RUB', name: 'Russian Ruble', symbol: '₽', flag: '🇷🇺' },
-    TRY: { code: 'TRY', name: 'Turkish Lira', symbol: '₺', flag: '🇹🇷' }
-  ,PLN: { code: 'PLN', name: 'Polish Zloty', symbol: 'z2', flag: '🇵🇱' }
-  ,HUF: { code: 'HUF', name: 'Hungarian Forint', symbol: 'Ft', flag: '🇭🇺' }
-  ,CZK: { code: 'CZK', name: 'Czech Koruna', symbol: 'K', flag: '🇨🇿' }
-  ,IDR: { code: 'IDR', name: 'Indonesian Rupiah', symbol: 'Rp', flag: '🇮🇩' }
-  ,THB: { code: 'THB', name: 'Thai Baht', symbol: '฿', flag: '🇹🇭' }
-  ,ILS: { code: 'ILS', name: 'Israeli Shekel', symbol: '₪', flag: '🇮🇱' }
-  ,AED: { code: 'AED', name: 'UAE Dirham', symbol: 'د.إ', flag: '🇦🇪' }
-  ,SAR: { code: 'SAR', name: 'Saudi Riyal', symbol: 'ر.س', flag: '🇸🇦' }
+  EUR: { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺' },
+  USD: { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸' },
+  GBP: { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧' },
+  JPY: { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵' },
+  CHF: { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF', flag: '🇨🇭' },
+  AUD: { code: 'AUD', name: 'Australian Dollar', symbol: 'A$', flag: '🇦🇺' },
+  CAD: { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', flag: '🇨🇦' },
+  CNY: { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳' },
+  SEK: { code: 'SEK', name: 'Swedish Krona', symbol: 'kr', flag: '🇸🇪' },
+  NOK: { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr', flag: '🇳🇴' },
+  DKK: { code: 'DKK', name: 'Danish Krone', symbol: 'kr', flag: '🇩🇰' },
+  INR: { code: 'INR', name: 'Indian Rupee', symbol: '₹', flag: '🇮🇳' },
+  BRL: { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷' },
+  ZAR: { code: 'ZAR', name: 'South African Rand', symbol: 'R', flag: '🇿🇦' },
+  NZD: { code: 'NZD', name: 'New Zealand Dollar', symbol: 'NZ$', flag: '🇳🇿' },
+  SGD: { code: 'SGD', name: 'Singapore Dollar', symbol: 'S$', flag: '🇸🇬' },
+  HKD: { code: 'HKD', name: 'Hong Kong Dollar', symbol: 'HK$', flag: '🇭🇰' },
+  MXN: { code: 'MXN', name: 'Mexican Peso', symbol: '$', flag: '🇲🇽' },
+  RUB: { code: 'RUB', name: 'Russian Ruble', symbol: '₽', flag: '🇷🇺' },
+  TRY: { code: 'TRY', name: 'Turkish Lira', symbol: '₺', flag: '🇹🇷' },
+  PLN: { code: 'PLN', name: 'Polish Zloty', symbol: 'zł', flag: '🇵🇱' },
+  HUF: { code: 'HUF', name: 'Hungarian Forint', symbol: 'Ft', flag: '🇭🇺' },
+  CZK: { code: 'CZK', name: 'Czech Koruna', symbol: 'Kč', flag: '🇨🇿' },
+  IDR: { code: 'IDR', name: 'Indonesian Rupiah', symbol: 'Rp', flag: '🇮🇩' },
+  THB: { code: 'THB', name: 'Thai Baht', symbol: '฿', flag: '🇹🇭' },
+  ILS: { code: 'ILS', name: 'Israeli Shekel', symbol: '₪', flag: '🇮🇱' },
+  AED: { code: 'AED', name: 'UAE Dirham', symbol: 'د.إ', flag: '🇦🇪' },
+  SAR: { code: 'SAR', name: 'Saudi Riyal', symbol: 'ر.س', flag: '🇸🇦' }
   };
 
   constructor(private rateSvc: RateService) {
