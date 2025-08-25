@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { RateService } from './rate.service';
+import { Subscription } from 'rxjs';
 
 export interface Rates { [code: string]: number }
 
@@ -11,29 +13,13 @@ export interface CurrencyInfo {
 
 @Injectable({ providedIn: 'root' })
 export class CurrencyService {
-  // static example rates relative to EUR (not real-time)
-  private rates: Rates = {
-    EUR: 1,
-    USD: 1.08,
-    GBP: 0.86,
-    JPY: 157.3,
-    CHF: 0.98,
-    AUD: 1.63,
-    CAD: 1.46,
-    CNY: 7.87,
-    SEK: 12.45,
-    NOK: 12.02,
-    DKK: 7.45,
-    INR: 91.23,
-    BRL: 5.62,
-    ZAR: 20.13,
-    NZD: 1.79,
-    SGD: 1.44,
-    HKD: 8.49,
-    MXN: 19.73,
-    RUB: 95.4,
-    TRY: 38.62
-  };
+  // No hard-coded numeric rates here – rates are fetched from the API at runtime.
+  // Keep a small, minimal fallback so convert() can operate if no live data is available.
+  private fallbackRates: Rates = { EUR: 1 };
+
+  // current live rates populated from API or cache
+  private currentRates: Rates | null = null;
+  private refreshSub: Subscription | null = null;
 
   // metadata for display
   private meta: { [code: string]: CurrencyInfo } = {
@@ -57,10 +43,28 @@ export class CurrencyService {
     MXN: { code: 'MXN', name: 'Mexican Peso', symbol: '$', flag: '🇲🇽' },
     RUB: { code: 'RUB', name: 'Russian Ruble', symbol: '₽', flag: '🇷🇺' },
     TRY: { code: 'TRY', name: 'Turkish Lira', symbol: '₺', flag: '🇹🇷' }
+  ,PLN: { code: 'PLN', name: 'Polish Zloty', symbol: 'z2', flag: '🇵🇱' }
+  ,HUF: { code: 'HUF', name: 'Hungarian Forint', symbol: 'Ft', flag: '🇭🇺' }
+  ,CZK: { code: 'CZK', name: 'Czech Koruna', symbol: 'K', flag: '🇨🇿' }
+  ,IDR: { code: 'IDR', name: 'Indonesian Rupiah', symbol: 'Rp', flag: '🇮🇩' }
+  ,THB: { code: 'THB', name: 'Thai Baht', symbol: '฿', flag: '🇹🇭' }
+  ,ILS: { code: 'ILS', name: 'Israeli Shekel', symbol: '₪', flag: '🇮🇱' }
+  ,AED: { code: 'AED', name: 'UAE Dirham', symbol: 'د.إ', flag: '🇦🇪' }
+  ,SAR: { code: 'SAR', name: 'Saudi Riyal', symbol: 'ر.س', flag: '🇸🇦' }
   };
 
+  constructor(private rateSvc: RateService) {
+    // load cached rates if available and trigger an immediate refresh
+    this.loadCachedRates('EUR');
+    // schedule a daily refresh (24h)
+    setInterval(() => this.refreshRates('EUR'), 24 * 60 * 60 * 1000);
+  }
+
   listCurrencies(): string[] {
-    return Object.keys(this.rates).sort();
+    // prefer live/current rates keys; otherwise fall back to metadata keys
+    const rates = this.getRates();
+    const keys = Object.keys(rates && Object.keys(rates).length ? rates : this.meta);
+    return keys.sort();
   }
 
   getInfo(code: string): CurrencyInfo {
@@ -68,12 +72,58 @@ export class CurrencyService {
   }
 
   convert(amount: number, from: string): Rates {
-    const fromRate = this.rates[from] || 1;
+    const rates = this.getRates();
+    const fromRate = rates[from] || 1;
     const eur = amount / fromRate;
     const out: Rates = {};
-    for (const [k, r] of Object.entries(this.rates)) {
+    for (const [k, r] of Object.entries(rates)) {
       out[k] = +(eur * r);
     }
     return out;
+  }
+
+  // return active rates (live if available, otherwise fallback)
+  getRates(): Rates {
+    return this.currentRates ?? this.fallbackRates;
+  }
+
+  // fetch latest rates from API and cache them
+  refreshRates(base: string = 'EUR') {
+    this.refreshSub?.unsubscribe();
+    this.refreshSub = this.rateSvc.fetchLatest(base).subscribe({
+      next: (data) => {
+        try {
+          const baseRate = data.rates || {};
+          this.currentRates = { ...baseRate } as Rates;
+          // cache for today
+          const key = 'converter:rates:' + base;
+          const payload = { date: data.date || new Date().toISOString().slice(0,10), fetchedAt: new Date().toISOString(), baseRates: baseRate };
+          try { localStorage.setItem(key, JSON.stringify(payload)); } catch {}
+        } catch {
+          this.currentRates = null;
+        }
+      },
+      error: () => {
+        // keep existing currentRates or fallback
+        this.currentRates = this.currentRates ?? null;
+      }
+    });
+  }
+
+  private loadCachedRates(base: string = 'EUR') {
+    try {
+      const key = 'converter:rates:' + base;
+      const raw = localStorage.getItem(key);
+      const today = new Date().toISOString().slice(0,10);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.date === today && parsed.baseRates) {
+          this.currentRates = parsed.baseRates as Rates;
+          return;
+        }
+      }
+    } catch {}
+    // otherwise fetch now
+    this.refreshRates(base);
   }
 }
