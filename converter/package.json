@@ -4,7 +4,7 @@
   "private": true,
   "description": "Currency converter app",
   "scripts": {
-    "start": "ng serve --host 0.0.0.0 --poll=2000",
+    "start": "ng serve --host 0.0.0.0 --poll=2000 -o",
     "build": "ng build",
     "test": "ng test"
   },
@@ -17,6 +17,8 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "bootstrap": "^5.3.7",
+    "ngx-bootstrap": "^11.0.2",
     "primeicons": "^6.0.0",
     "primeng": "^16.0.0",
     "rxjs": "^7.8.0",
