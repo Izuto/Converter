@@ -86,6 +86,36 @@ body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f4f6fb
 	text-overflow: ellipsis;
 }
 
+/* Improve dropdown positioning and display */
+::ng-deep .p-dropdown-panel {
+	margin-top: 2px !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+	border: 1px solid #ddd !important;
+}
+
+/* Ensure full text display in selected items */
+::ng-deep .p-dropdown .p-dropdown-label {
+	display: flex !important;
+	align-items: center !important;
+	gap: 0.25rem !important;
+	overflow: visible !important;
+	white-space: nowrap !important;
+	text-overflow: unset !important;
+}
+
+/* Make dropdown items more readable */
+::ng-deep .p-dropdown-item {
+	padding: 0.75rem 1rem !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 0.25rem !important;
+}
+
+/* Ensure dropdown panels appear correctly positioned */
+::ng-deep .p-dropdown[appendto="body"] .p-dropdown-panel {
+	z-index: 1100 !important;
+}
+
 @media (max-width: 576px) {
 	.controls-row { gap: 0.5rem }
 	.controls-row .form-select { min-width: 120px }

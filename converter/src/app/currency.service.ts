@@ -66,7 +66,27 @@ export class CurrencyService {
   GEL: 1,
   HRK: 1,
   MAD: 1,
-  PAB: 1
+  PAB: 1,
+  // additional Gulf / regional currencies
+  BHD: 1,
+  KGS: 1,
+  KWD: 1,
+  OMR: 1,
+  QAR: 1,
+  // requested special / regional currencies
+  XCG: 1,
+  XDR: 1,
+  VES: 1,
+  TVD: 1,
+  STN: 1,
+  SLE: 1,
+  MRU: 1,
+  JEP: 1,
+  IMP: 1,
+  KID: 1,
+  // non-ISO / regional codes
+  FOK: 1,
+  GGP: 1
   };
 
   // current live rates populated from API or cache
@@ -214,8 +234,24 @@ export class CurrencyService {
     THB: '🇹🇭', ILS: '🇮🇱', AED: '🇦🇪', SAR: '🇸🇦', ARS: '🇦🇷', BGN: '🇧🇬', CLP: '🇨🇱', COP: '🇨🇴',
     EGP: '🇪🇬', ISK: '🇮🇸', KES: '🇰🇪', KZT: '🇰🇿', NGN: '🇳🇬', PHP: '🇵🇭', RON: '🇷🇴', UAH: '🇺🇦',
     VND: '🇻🇳', TWD: '🇹🇼', PKR: '🇵🇰', LKR: '🇱🇰', BDT: '🇧🇩', GEL: '🇬🇪', HRK: '🇭🇷', MAD: '🇲🇦',
-  PAB: '🇵🇦', BHD: '🇧🇭', KGS: '🇰🇬', KWD: '🇰🇼', OMR: '🇴🇲', QAR: '🇶🇦', ZWL: '🇿🇼',
-  FOK: '🇫🇴', GGP: '🇬🇬'
+    PAB: '🇵🇦', BHD: '🇧🇭', KGS: '🇰🇬', KWD: '🇰🇼', OMR: '🇴🇲', QAR: '🇶🇦', ZWL: '🇿🇼',
+    FOK: '🇫🇴', GGP: '🇬🇬',
+    // Additional currencies from meta that were missing flags
+    XCG: '🇨🇼', XDR: '💱', VES: '🇻🇪', TVD: '🇹🇻', STN: '🇸🇹', SLE: '🇸🇱', MRU: '🇲🇷',
+    JEP: '🇯🇪', IMP: '🇮🇲', KID: '🇰🇮',
+    // Common additional currencies that might appear in API responses
+    AMD: '🇦🇲', AOA: '🇦🇴', AWG: '🇦🇼', AZN: '🇦🇿', BAM: '🇧🇦', BBD: '🇧🇧', BIF: '🇧🇮', BMD: '🇧🇲',
+    BND: '🇧🇳', BOB: '🇧🇴', BSD: '🇧🇸', BTN: '🇧🇹', BWP: '🇧🇼', BYN: '🇧🇾', BZD: '🇧🇿', CDF: '🇨🇩',
+    CRC: '🇨🇷', CUP: '🇨🇺', CVE: '🇨🇻', DJF: '🇩🇯', DOP: '🇩🇴', DZD: '🇩🇿', ERN: '🇪🇷', ETB: '🇪🇹',
+    FJD: '🇫🇯', FKP: '🇫🇰', GHS: '🇬🇭', GIP: '🇬🇮', GMD: '🇬🇲', GNF: '🇬🇳', GTQ: '🇬🇹', GYD: '🇬🇾',
+    HNL: '🇭🇳', HTG: '🇭🇹', IQD: '🇮🇶', IRR: '🇮🇷', JMD: '🇯🇲', JOD: '🇯🇴', KHR: '🇰🇭', KMF: '🇰🇲',
+    KPW: '🇰🇵', KRW: '🇰🇷', LAK: '🇱🇦', LBP: '🇱🇧', LRD: '🇱🇷', LSL: '🇱🇸', LYD: '🇱🇾', MDL: '🇲🇩',
+    MGA: '🇲🇬', MKD: '🇲🇰', MMK: '🇲🇲', MNT: '🇲🇳', MOP: '🇲🇴', MUR: '🇲🇺', MVR: '🇲🇻', MWK: '🇲🇼',
+    MYR: '🇲🇾', MZN: '🇲🇿', NAD: '🇳🇦', NIO: '🇳🇮', NPR: '🇳🇵', PEN: '🇵🇪', PGK: '🇵🇬', PYG: '🇵🇾',
+    RSD: '🇷🇸', RWF: '🇷🇼', SBD: '🇸🇧', SCR: '🇸🇨', SDG: '🇸🇩', SHP: '🇸🇭', SLL: '🇸🇱', SOS: '🇸🇴',
+    SRD: '🇸🇷', SYP: '🇸🇾', SZL: '🇸🇿', TJS: '🇹🇯', TMT: '🇹🇲', TND: '🇹🇳', TOP: '🇹🇴', TTD: '🇹🇹',
+    UGX: '🇺🇬', UYU: '🇺🇾', UZS: '🇺🇿', VUV: '🇻🇺', WST: '🇼🇸', XAF: '🇨🇲', XCD: '🇦🇬', XOF: '🇸🇳',
+    XPF: '🇵🇫', YER: '🇾🇪', ZMW: '🇿🇲'
   };
 
   private ensureFlagsForCodes(codes: string[]) {
@@ -242,6 +278,28 @@ export class CurrencyService {
   return keys.sort();
   }
 
+  // Comprehensive mapping of currency codes to their symbols for currencies not in meta
+  private readonly CURRENCY_SYMBOLS: Record<string, string> = {
+    // Additional Asia Pacific currencies not in meta
+    KRW: '₩', MYR: 'RM', MMK: 'K', KHR: '៛', LAK: '₭', MOP: 'MOP$', BND: 'B$', 
+    NCF: '₣', XPF: '₣', NPR: '₨', WST: 'WS$',
+    // Additional Americas currencies not in meta
+    PEN: 'S/', UYU: '$U', PYG: '₲', BOB: 'Bs', GYD: 'G$', SRD: '$', TTD: 'TT$', 
+    JMD: 'J$', BBD: 'Bds$', BSD: 'B$', BZD: 'BZ$', GTQ: 'Q', HNL: 'L', NIO: 'C$', 
+    CRC: '₡', DOP: 'RD$', HTG: 'G', CUP: '$', XCD: 'EC$', AWG: 'ƒ', ANG: 'ƒ',
+    // Additional Europe currencies not in meta
+    MDL: 'L', BYN: 'Br', AMD: '֏', AZN: '₼', ALL: 'L', MKD: 'ден', BAM: 'KM', RSD: 'дин',
+    // Additional Africa currencies not in meta
+    UGX: 'USh', TZS: 'TSh', RWF: '₣', ETB: 'Br', GHS: '₵', XOF: '₣', XAF: '₣', 
+    TND: 'د.ت', DZD: 'د.ج', LYD: 'ل.د', SDG: 'ج.س.', SOS: 'S', DJF: 'Fdj', ERN: 'Nfk', 
+    MWK: 'MK', ZMW: 'ZK', BWP: 'P', SZL: 'L', LSL: 'L', NAD: 'N$', AOA: 'Kz', MZN: 'MT',
+    MGA: 'Ar', KMF: '₣', SCR: '₨', MUR: '₨', MVR: '.ރ',
+    // Additional Middle East currencies not in meta
+    LBP: '£', SYP: '£', IQD: 'ع.د', IRR: '﷼', AFN: '؋', JOD: 'د.ا',
+    // Additional Pacific currencies not in meta
+    FJD: 'FJ$', PGK: 'K', SBD: 'SI$', TOP: 'T$', VUV: 'VT', CKD: '$'
+  };
+
   getInfo(code: string): CurrencyInfo {
     // ensure we return a persistent meta object and fill fallback flag/name when missing
     let info = this.meta[code];
@@ -250,6 +308,8 @@ export class CurrencyService {
       // attach fallback flag if available
   const f = (this as any).countryFlags?.[code] || (this as any).FLAG_MAP && (this as any).FLAG_MAP[code];
       if (f) info.flag = f;
+      // provide proper currency symbol or fallback to code
+      info.symbol = this.CURRENCY_SYMBOLS[code] || code;
       this.meta[code] = info;
       return info;
     }
@@ -260,6 +320,10 @@ export class CurrencyService {
     }
     if (!info.name) {
       info.name = this.currencyNames[code] || code;
+    }
+    // ensure symbol is always defined - prefer predefined symbols over existing ones
+    if (!info.symbol || info.symbol === code) {
+      info.symbol = this.CURRENCY_SYMBOLS[code] || code;
     }
     return info;
   }

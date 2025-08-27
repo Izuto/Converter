@@ -11,15 +11,15 @@ import { I18nService, Lang } from './i18n.service';
       <div class="brand">{{ i18n.t('title') }}</div>
       <div class="lang-select">
         <label class="visually-hidden">{{ i18n.t('navLangLabel') }}</label>
-        <p-dropdown [options]="i18n.langs" optionLabel="name" optionValue="code" [(ngModel)]="currentLang" (onChange)="onLangChange($event.value)">
+        <p-dropdown [options]="i18n.langs" optionLabel="name" optionValue="code" [(ngModel)]="currentLang" (onChange)="onLangChange($event.value)" appendTo="body">
           <ng-template let-l pTemplate="item">
-            <div class="p-clearfix">
+            <div class="p-clearfix" *ngIf="l">
               <span style="margin-right:8px">{{ l.flag }}</span>
               <span>{{ l.name }}</span>
             </div>
           </ng-template>
           <ng-template let-l pTemplate="selectedItem">
-            <div class="p-clearfix">
+            <div class="p-clearfix" *ngIf="l">
               <span style="margin-right:8px">{{ l.flag }}</span>
               <span>{{ l.name }}</span>
             </div>
