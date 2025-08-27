@@ -5,10 +5,6 @@ html,body { height:100%; margin:0; font-family: Arial, sans-serif }
 	--brand:#07124b;
 	--accent:#0d6efd;
 }
-/* PrimeNG theme, core and icons */
-@import "primeng/resources/themes/saga-blue/theme.css";
-@import "primeng/resources/primeng.min.css";
-@import "primeicons/primeicons.css";
 body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f4f6fb; min-height: 100vh; padding-top: 70px }
 
 /* topbar / language selector */
@@ -91,6 +87,7 @@ body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f4f6fb
 	margin-top: 2px !important;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 	border: 1px solid #ddd !important;
+	z-index: 1100 !important;
 }
 
 /* Ensure full text display in selected items */
@@ -114,6 +111,28 @@ body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f4f6fb
 /* Ensure dropdown panels appear correctly positioned */
 ::ng-deep .p-dropdown[appendto="body"] .p-dropdown-panel {
 	z-index: 1100 !important;
+}
+
+/* Additional fixes for PrimeNG 17 compatibility */
+::ng-deep .p-dropdown {
+	position: relative !important;
+}
+
+::ng-deep .p-dropdown .p-dropdown-trigger {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+/* Ensure dropdown overlay is properly positioned */
+::ng-deep .p-overlay {
+	z-index: 1100 !important;
+}
+
+/* Fix for dropdown items visibility */
+::ng-deep .p-dropdown-items {
+	max-height: 360px !important;
+	overflow-y: auto !important;
 }
 
 @media (max-width: 576px) {
