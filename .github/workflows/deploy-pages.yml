@@ -27,6 +27,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Remove tracked local dependencies
+        run: rm -rf converter/node_modules
+
       - name: Install dependencies
         working-directory: converter
         run: npm install --no-package-lock --no-audit --no-fund
