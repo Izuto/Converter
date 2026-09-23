@@ -33,14 +33,16 @@ import { ConverterController } from './converter.controller';
           <div class="col-12">
             <div class="controls-row d-flex flex-wrap align-items-center gap-3">
               <div class="flex-grow-1 min-w-0">
-                <p-dropdown [options]="currencyOptionsCached" [(ngModel)]="controller.from" (onChange)="onCurrencyChange()" optionValue="value" placeholder="{{i18n.t('from')}}" [scrollHeight]="'360px'" optionDisabled="disabled">
+                <p-dropdown [options]="currencyOptionsCached" [(ngModel)]="controller.from" (onChange)="onCurrencyChange()" optionValue="value" placeholder="{{i18n.t('from')}}" [scrollHeight]="'360px'" optionDisabled="disabled" appendTo="body">
                   <ng-template let-opt pTemplate="selectedItem">
-                    <span class="flag">{{ svc.getFlag(opt.value) }}</span><span class="sep"> </span>
-                    <span class="code">{{ opt.value }}</span><span class="sep"> -</span>
-                    <span class="name">{{ i18n.getCurrencyName(opt.value, svc.getInfo(opt.value).name) }}</span>
+                    <ng-container *ngIf="opt && opt.value && svc.getInfo(opt.value)">
+                      <span class="flag">{{ svc.getFlag(opt.value) }}</span><span class="sep"> </span>
+                      <span class="code">{{ opt.value }}</span><span class="sep"> - </span>
+                      <span class="name">{{ i18n.getCurrencyName(opt.value, svc.getInfo(opt.value).name) }}</span>
+                    </ng-container>
                   </ng-template>
                   <ng-template let-opt pTemplate="item">
-                    <ng-container *ngIf="!opt.divider; else dividerTpl">
+                    <ng-container *ngIf="opt && opt.value && !opt.divider; else dividerTpl">
                       <div class="dropdown-item">
                         <span class="flag">{{ svc.getFlag(opt.value) }}</span><span class="sep"> </span>
                         <span class="code ms-2">{{ opt.value }}</span><span class="sep"> - </span>
@@ -59,16 +61,18 @@ import { ConverterController } from './converter.controller';
               </div>
 
               <div class="flex-grow-1 min-w-0">
-                <p-dropdown [options]="currencyOptionsCached" [(ngModel)]="controller.to" (onChange)="onCurrencyChange()" optionValue="value" placeholder="{{i18n.t('to')}}" [scrollHeight]="'360px'" optionDisabled="disabled">
+                <p-dropdown [options]="currencyOptionsCached" [(ngModel)]="controller.to" (onChange)="onCurrencyChange()" optionValue="value" placeholder="{{i18n.t('to')}}" [scrollHeight]="'360px'" optionDisabled="disabled" appendTo="body">
                   <ng-template let-opt pTemplate="selectedItem">
-                    <span class="flag">{{ svc.getFlag(opt.value) }}</span><span class="sep"> </span>
-                    <span class="code">{{ opt.value }}</span><span class="sep"> - </span>
-                    <span class="name">{{ i18n.getCurrencyName(opt.value, svc.getInfo(opt.value).name) }}</span>
+                    <ng-container *ngIf="opt && opt.value && svc.getInfo(opt.value)">
+                      <span class="flag">{{ svc.getFlag(opt.value) }}</span><span class="sep"> </span>
+                      <span class="code">{{ opt.value }}</span><span class="sep"> - </span>
+                      <span class="name">{{ i18n.getCurrencyName(opt.value, svc.getInfo(opt.value).name) }}</span>
+                    </ng-container>
                   </ng-template>
                   <ng-template let-opt pTemplate="item">
-                    <div class="dropdown-item">
+                    <div class="dropdown-item" *ngIf="opt && opt.value && svc.getInfo(opt.value)">
                       <span class="flag">{{ svc.getFlag(opt.value) }}</span><span class="sep"> </span>
-                      <span class="code ms-2">{{ opt.value }}</span><span class="sep"> -</span>
+                      <span class="code ms-2">{{ opt.value }}</span><span class="sep"> - </span>
                       <span class="name ms-2">{{ i18n.getCurrencyName(opt.value, svc.getInfo(opt.value).name) }}</span>
                     </div>
                   </ng-template>
@@ -91,9 +95,9 @@ import { ConverterController } from './converter.controller';
           <div class="col-12">
             <div class="result-box">
                   <ng-container *ngIf="singleResult !== null; else placeholder">
-                    <div class="result-label">{{amount}} {{svc.getInfo(from).symbol}} {{from}} =</div>
-                    <div class="result-value">{{svc.getInfo(to).symbol}} {{ singleResult | number:'1.2-6' }} <small class="text-muted">{{to}}</small></div>
-                    <!-- <div class="text-muted mt-2">1 {{svc.getInfo(from).symbol}} {{from}} = {{svc.getInfo(to).symbol}} {{ baseRateSingle | number:'1.2-6' }} <small class="text-muted">{{to}}</small></div> -->
+                    <div class="result-label">{{ i18n.formatNumber(amount, 0, 6) }} {{svc.getInfo(from).symbol}} {{from}} =</div>
+                    <div class="result-value">{{svc.getInfo(to).symbol}} {{ i18n.formatNumber(singleResult, 2, 2) }} <small class="text-muted">{{to}}</small></div>
+                    <!-- <div class="text-muted mt-2">1 {{svc.getInfo(from).symbol}} {{from}} = {{svc.getInfo(to).symbol}} {{ baseRateSingle | number:'1.2-2' }} <small class="text-muted">{{to}}</small></div> -->
                     <div class="text-muted mt-2 small">
                       {{ controller.lastUpdated ? i18n.formatDate(controller.lastUpdated) : '' }}
                       <span *ngIf="controller.rateSource"> — {{ i18n.t('rateSource.' + controller.rateSource) }}</span>
@@ -118,6 +122,33 @@ import { ConverterController } from './converter.controller';
     .code { font-weight: 600; }
     .name { color: var(--text-muted, #6c757d); margin-left: 0.4rem; }
     .big-input { font-size: 1.6rem; padding: 0.5rem; }
+    
+    /* Ensure proper spacing in selected items */
+    :host ::ng-deep .p-dropdown .p-dropdown-label {
+      display: flex !important;
+      align-items: center !important;
+      flex-wrap: nowrap !important;
+    }
+    
+    :host ::ng-deep .p-dropdown .p-dropdown-label .sep {
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+    }
+    
+    :host ::ng-deep .p-dropdown .p-dropdown-label .flag {
+      flex-shrink: 0 !important;
+    }
+    
+    :host ::ng-deep .p-dropdown .p-dropdown-label .code {
+      flex-shrink: 0 !important;
+      margin-left: 0.25rem !important;
+    }
+    
+    :host ::ng-deep .p-dropdown .p-dropdown-label .name {
+      margin-left: 0.25rem !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
     `
   ]
 })

@@ -1,0 +1,3 @@
+exclude:
+  - converter/node_modules
+  - converter/dist

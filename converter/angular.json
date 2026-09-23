@@ -22,6 +22,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -53,11 +56,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "converter:build"
+            "buildTarget": "converter:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "converter:build:production"
+              "buildTarget": "converter:build:production"
             }
           }
         },
@@ -81,7 +84,6 @@
       }
     }
   },
-  "defaultProject": "converter",
   "cli": {
     "analytics": false
   }
